@@ -83,30 +83,25 @@ let seedProperties = [
 
 // GET All Properties
 app.get('/api/properties', async (req, res) => {
-    try {
-        const properties = await Property.find();
-        if (properties.length > 0) {
-            return res.json(properties);
-        }
-        res.json(seedProperties);
-    } catch (err) {
-        res.json(seedProperties);
-    }
+  try {
+    const properties = await Property.find();
+    res.json(properties);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // GET Property by ID
 app.get('/api/properties/:id', async (req, res) => {
-    try {
-        const property = await Property.findById(req.params.id);
-        if (property) return res.json(property);
-        
-        const fallback = seedProperties.find(p => p._id === req.params.id);
-        if (fallback) return res.json(fallback);
-        res.status(404).json({ message: 'Property not found' });
-    } catch (err) {
-        const fallback = seedProperties.find(p => p._id === req.params.id);
-        res.json(fallback || seedProperties[0]);
+  try {
+    const property = await Property.findById(req.params.id);
+    if (!property) {
+      return res.status(404).json({ message: 'Property not found' });
     }
+    res.json(property);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // POST Add New Property
