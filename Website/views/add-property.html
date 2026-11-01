@@ -1,0 +1,66 @@
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm p-4">
+                <h2 class="fw-bold mb-3">Add New Property Listing</h2>
+                <p class="text-muted mb-4">List your hostel, flat, or house for UPES students.</p>
+
+                <form name="addPropertyForm" ng-submit="submitProperty()" novalidate>
+                    <!-- Title -->
+                     <div class="mb-3">
+                        <label class="form-label fw-bold">Property Title</label>
+                        <input type="text" class="form-control" ng-model="newProperty.title" placeholder="e.g. Scholars Den Hostel" required>
+                     </div>
+
+                     <div class="row">
+                        <!-- Type -->
+                         <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Accommodation Type</label>
+                            <select class="form-select" ng-model="newProperty.type" required>
+                                <option value="">Select Type</option>
+                                <option value="hostel">Hostel</option>
+                                <option value="flat">Flat</option>
+                                <option value="house">House</option>
+                            </select>
+                         </div>
+
+                         <!-- Rent -->
+                          <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Monthly Rent (₹)</label>
+                            <input type="number" class="form-control" ng-model="newProperty.rent" placeholder="e.g. 9000" required>
+                          </div>
+                     </div>
+
+                     <!-- Campus Proximity -->
+                      <div class="mb-3">
+                        <label class="form-label fw-bold">Campus Proximity / Distance</label>
+                        <input type="text" class="form-control" ng-model="newProperty.campusProximity" placeholder="e.g. Near Bidholi Gate 1" required>
+                      </div>
+
+                      <!-- Description -->
+                       <div class="mb-3">
+                        <label class="form-label fw-bold">Description</label>
+                        <textarea class="form-control" rows="3" ng-model="newProperty.description" placeholder="Briefly describe facilities, food availablity, security, etc."></textarea>
+                       </div>
+
+                       <!-- Contact Details -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Owner Name</label>
+                                <input type="text" class="form-control" ng-model="newProperty.ownerName" placeholder="e.g. Mr. Kumar">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Contact Number</label>
+                                <input type="text" class="form-control" ng-model="newProperty.contactNumber" placeholder="e.g. +91 98765 43210">
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                         <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-warning fw-bold py-2">Publish Listing</button>
+                         </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

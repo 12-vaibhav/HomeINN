@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeINN</title>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Hero banner -->
+         <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
+            <div class="container-fluid py-3">
+                <h1 class="display-5 fw-bold text-dark">Find your perfect Home Space Near your campus 🏫</h1>
+                <p class="col-md-8 fs-4 text-secondary">
+                    Say goodbye to broker hassles. Discover verified hostels, 1BHK flats, and shared houses around bidholi and kandoli with transparent pricing and student roomie matching.
+                </p>
+
+                <!-- A quick search bar -->
+                 <div class="row g-2 mt-4">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-lg" ng-model="searchQuery" placeholder="Search by area, title or gate...">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select form-select-lg" ng-model="selectedType">
+                            <option value="">All Types (Hostel/Flat)</option>
+                            <option value="hostel">Hostel</option>
+                            <option value="flat">Flat / Apartment</option>
+                            <option value="house">Independent House</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/litings" class="btn btn-warning btn-lg w-100 fw-bold text-dark">Explore listings</a>
+                    </div>
+                 </div>
+            </div>
+         </div>
+
+         <!-- Distinct features section -->
+          <div class="row text-center g-4 my-4">
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 border">
+                    <h3 class="h5 fw-bold text-warning">🎓 UPES Campus Proximity</h3>
+                    <p class="text-muted">Real-time distance metrics and commute guides specifically calculated from Bidholi Gate 1/2 and Kandoli.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadows-sm h-100 border">
+                    <h3 class="h5 fw-bold text-warning">📊 Transparent Cost Analytics</h3>
+                    <p class="text-muted">Interactive D3.js cost visualisers breaking down rent, electricity, mess bills and security deposits.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 border">
+                    <h3 class="h5 fw-bold text-warning">🤝 Roomie Matcher</h3>
+                    <p class="text-muted">Connect with fellow students sharing similar study habits, sleep schedules and lease preferences.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
