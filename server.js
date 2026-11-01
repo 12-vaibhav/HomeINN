@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -113,9 +114,8 @@ app.post('/api/properties', async (req, res) => {
         const saved = await newProperty.save();
         res.status(201).json(saved);
     } catch (err) {
-        const mockSaved = { _id: Date.now().toString(), ...req.body };
-        seedProperties.push(mockSaved);
-        res.status(201).json(mockSaved);
+        console.error('MongoDB Save Error:', err.message);
+        res.status(500).json({error: err.message});
     }
 });
 
