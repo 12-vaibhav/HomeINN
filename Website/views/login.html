@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeINN | Login</title>
+
+
+    <style>
+        .auth-wrapper {
+            min-height: 82vh;
+            background: linear-gradient(-45deg, #4f46e5, #7c3aed, #db2777, #2563eb);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            border-radius: 24px;
+            padding: 2rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .glass-auth-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            max-width: 450px;
+            width: 100%;
+            overflow: hidden;
+            animation: floatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes floatUp {
+            from {opacity: 0; transform: translateY(25px) scale(0.97);}
+            to {opacity: 1; transform: translateY(0) scale(1);}
+        }
+
+        .auth-header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 60%, #831843 100%);
+            color: white;
+            padding: 2rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .tab-pill-container {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 5px;
+            border-radius: 15px;
+            display: flex;
+            margin-top: 1.25rem;
+        }
+
+        .tab-pill-btn {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .tab-pill-btn.active {
+            background: #ffffff;
+            color: #312e81;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02);
+        }
+
+        .vibrant-input {
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1.5px solid #e2e8f0;
+            transition: all 0.25s ease;
+        }
+
+        .vibrant-input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+        }
+
+        .btn-vibrant-login {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-vibrant-login:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.5);
+            color: white;
+        }
+
+        .box-vibrant-register {
+            background: linear-gradient(135deg, #9333ea, #db2777);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-vibrant-register:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(219, 39, 119, 0.5);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <div class="auth-wrapper">
+            <div class="glass-auth-card">
+                <!-- Header -->
+                 <div class="auth-header">
+                    <h2 class="fw-bold mb-1">Welcome to HomeINN</h2>
+                    <p class="small text-white-50 mb-0">Zero Brokerage Student Housing Portal</p>
+
+                    <!-- Tab Switcher -->
+                     <div class="tab-pill-container">
+                        <button type="button" class="tab-pill-btn" ng-class="{'active': isLogin}" ng-click="switchTab(true)">Sign In</button>
+                        <button type="button" class="tab-pill-btn" ng-class="{'active': !isLogin}" ng-click="switchTab(false)">Create Account</button>
+                     </div>
+                 </div>
+
+                 <!-- Body -->
+                  <div class="p-4 p-md-5">
+                    <!-- Feedback Alert -->
+                     <div ng-if="statusMessage" class="alert py-2 px-3 rounded-3 small fw-semibold" ng-class="isError ? 'alert-danger' : 'alert-success'">{{statusMessage}}</div>
+
+                     <!-- Login Form -->
+                      <form name="loginForm" ng-show="isLogin" ng-submit="handleLogin(loginForm)" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Email Address</label>
+                            <input type="email" name="email" class="form-control vibrant-input" ng-model="loginData.email" placeholder="yourmail@gmail.com" required>
+                            <small class="text-danger" ng-show="loginForm.email.$touched && loginForm.email.$invalid">Please enter a valid email address.</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Password</label>
+                            <input type="password" name="password" class="form-control vibrant-input" ng-model="loginData.password" placeholder="enter password 😊" required>
+                            <small class="text-danger" ng-show="loginForm.password.$touched && loginForm.password.$error.required">Password is required</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-vibrant-login w-100" ng-disabled="loginForm.$invalid || loading">
+                            <span ng-if="!loading">Sign In to HomeINN</span>
+                            <span ng-if="loading">Authenticating...</span>
+                        </button>
+                      </form>
+
+                      <!-- Register Form -->
+                       <form name="registerForm" ng-show="!isLogin" ng-submit="handleRegister(registerForm)" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Full Name</label>
+                            <input type="text" name="name" class="form-control vibrant-input" ng-model="registerData.name" placeholder="Vaibhav" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Email Address</label>
+                            <input type="email" name="email" class="form-control vibrant-input" ng-model="registerData.email" placeholder="yourmail@gmail.com" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Password (minimum 6 characters)</label>
+                            <input type="password" name="password" class="form-control vibrant-input" ng-model="registerData.password" ng-minlength="6" placeholder="Create a strong password 😊" required>
+                            <small class="text-danger" ng-show="registerForm.password.$touched && registerForm.password.$error.minlength">Password must be at least 6 characters long.</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Account Type</label>
+                            <select class="form-select vibrant-input" ng-model="registerData.role">
+                                <option value="student">Student (Searching for Hostel / Flat)</option>
+                                <option value="owner">Property Owner / Landlord</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-vibrant-register w-100" ng-disabled="registerForm.$invalid || loading">
+                            <span ng-if="!loading">Create Free Account</span>
+                            <span ng-if="loading">Creating Account...</span>
+                        </button>
+                       </form>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
