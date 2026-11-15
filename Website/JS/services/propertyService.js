@@ -11,4 +11,3 @@ angular.module('homeInnApp').factory('PropertyService', ['$http', function($http
         }
     };
 }]);
-
